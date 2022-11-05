@@ -24,7 +24,7 @@
 		"graphql": "^16.6.0"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^3.14.1",
+		"@cloudflare/workers-types": "^3.18.0",
 		"@typescript-eslint/eslint-plugin": "latest",
 		"@typescript-eslint/parser": "latest",
 		"eslint": "^7.32.0 || ^8.2.0",
