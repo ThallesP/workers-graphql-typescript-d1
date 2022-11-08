@@ -1,13 +1,13 @@
 import { CloudflareApolloServer } from "./services/CloudflareApolloServer";
 import playground from "./services/playground";
-
 import typeDefs from "./typeDefs";
-import resolvers from "./resolvers";
-import dataSources from "./datasources";
-import KVCache from "./services/KVCache";
+import { D1Organizations } from "./dataSources/D1Organizations";
+import { getAllOrganizationsResolver } from "./resolvers/getAllOrganizationsResolver";
+import { createOrganizationResolver } from "./resolvers/createOrganizationResolver";
+import { donateToOrganizationResolver } from "./resolvers/donateToOrganizationResolver";
 
 interface Env {
-	WORKERS_GRAPHQL_CACHE: KVNamespace;
+	database: D1Database;
 }
 
 export default {
@@ -18,13 +18,20 @@ export default {
 			}
 			const server = new CloudflareApolloServer({
 				typeDefs,
-				resolvers,
-				dataSources,
-				cache: new KVCache(env.WORKERS_GRAPHQL_CACHE),
+				resolvers: {
+					...getAllOrganizationsResolver,
+					...createOrganizationResolver,
+					...donateToOrganizationResolver,
+				},
+				dataSources: () => ({
+					d1Organizations: new D1Organizations(env.database),
+				}),
 			});
 			server.start();
 			return server.respond(req);
 		} catch (e) {
+			console.log(e);
+
 			if (e instanceof Error) {
 				return new Response(e.message, { status: 500 });
 			}

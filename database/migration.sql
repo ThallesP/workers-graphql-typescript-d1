@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS organizations(id TEXT, name TEXT, description TEXT, total_donations INT, PRIMARY KEY(`id`));

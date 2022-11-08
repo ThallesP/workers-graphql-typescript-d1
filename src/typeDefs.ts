@@ -1,25 +1,34 @@
 import { gql } from "apollo-server-cloudflare";
 
 const typeDefs = gql`
-	type Pokemon {
-		id: ID!
+	type Organization {
+		id: String!
 		name: String!
-		height: Int!
-		weight: Int!
-		sprites: PokemonSprites!
-	}
-	type PokemonSprites {
-		front_default: String!
-		front_shiny: String!
-		front_female: String
-		front_shiny_female: String
-		back_default: String!
-		back_shiny: String!
-		back_female: String
-		back_shiny_female: String
+		description: String!
+		total_donations: Int!
 	}
 	type Query {
-		pokemon(id: ID!): Pokemon
+		getAllOrganizations: [Organization]!
+	}
+
+	input CreateOrganizationInput {
+		name: String!
+		description: String!
+	}
+
+	input DonateToOrganizationInput {
+		amount: Int!
+		id: String!
+	}
+
+	type Mutation {
+		createOrganization(
+			createOrganizationInput: CreateOrganizationInput!
+		): Organization!
+
+		donateToOrganization(
+			donateToOrganizationInput: DonateToOrganizationInput!
+		): String
 	}
 `;
 
