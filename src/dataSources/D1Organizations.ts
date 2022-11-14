@@ -32,8 +32,6 @@ export class D1Organizations extends DataSource {
 			.run();
 
 		if (result.error) throw result.error;
-
-		console.log(result);
 	}
 
 	async save(org: Organization) {

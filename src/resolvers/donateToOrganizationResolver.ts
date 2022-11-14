@@ -18,7 +18,7 @@ const donateToOrganizationResolver = {
 				donateToOrganizationInput
 			);
 
-			return "";
+			return donateToOrganizationInput.id;
 		},
 	},
 };

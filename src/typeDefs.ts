@@ -28,7 +28,7 @@ const typeDefs = gql`
 
 		donateToOrganization(
 			donateToOrganizationInput: DonateToOrganizationInput!
-		): String
+		): String!
 	}
 `;
 
