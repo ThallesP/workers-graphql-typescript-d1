@@ -27,7 +27,7 @@
 		"uuid": "^9.0.0"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^3.14.1",
+		"@cloudflare/workers-types": "^4.20230404.0",
 		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "latest",
 		"@typescript-eslint/parser": "latest",
